@@ -17,9 +17,3 @@ def GenerateCombinations(depth):
     for depth in range(depth):
         combinations = AppendDirs(combinations)
     return combinations
-
-def main():
-    b = GenerateCombinations(8)
-
-if __name__ == '__main__':
-    main()

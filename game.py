@@ -1,14 +1,5 @@
-import sys
 import numpy as np
-from pynput import keyboard
 from sys import exit
-from os import name, system
-
-def clear():
-    if name == 'nt':
-        _ = system('cls')
-    else:
-        _ = system('clear')
 
 def GenRandCell(board):
     empty = np.where(board==0)
@@ -114,54 +105,4 @@ def Move(board, dir):
             return board
         
 def GameOver(board):
-    if board == Move(board,'up') and board == Move(board,'down') and board == Move(board,'left') and board == Move(board,'right') and board == Move:
-        clear()
-        print('Game over')
-        print(board)
-        exit()
-
-global board
-board = np.zeros((4,4), int)
-#board = GenRandCell(board)
-#board = GenRandCell(board)
-board[0][0] = 2
-board[0][1] = 2
-board[0][2] = 4
-board[0][3] = 4
-print(board)
-#board = Move(board,'right')
-#print()
-#print(board)
-
-def on_press(key):
-    global board
-    try:
-        if key.char == 'w':
-            clear()
-            board = Move(board, 'up')
-            print(board)
-            #GameOver(board)
-        if key.char == 's':
-            clear()
-            board = Move(board, 'down')
-            print(board)
-            #GameOver(board)
-        if key.char == 'a':
-            clear()
-            board = Move(board, 'left')
-            print(board)
-            #GameOver(board)
-        if key.char == 'd':
-            clear()
-            board = Move(board, 'right')
-            print(board)
-            #GameOver(board)
-            
-        if key.char == 'q':
-            exit()
-    except AttributeError:
-        None
-
-with keyboard.Listener(
-        on_press=on_press) as listener:
-    listener.join()
+    None
