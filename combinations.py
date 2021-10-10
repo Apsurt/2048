@@ -19,7 +19,7 @@ def GenerateCombinations(depth):
     return combinations
 
 def main():
-    print(GenerateCombinations(5))
+    b = GenerateCombinations(8)
 
 if __name__ == '__main__':
     main()
