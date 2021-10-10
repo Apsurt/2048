@@ -14,7 +14,7 @@ def GenRandCell(board):
             board[emptySpaces[rand][0]][emptySpaces[rand][1]] = 2
         return board
 
-def Move(board, dir):
+def Move(board, dir, checkformoves=0):
     moved = False
     if dir == 'up':
         for y in range(4):
@@ -34,9 +34,15 @@ def Move(board, dir):
                         except IndexError:
                             None
         if moved:
-            return GenRandCell(board)
+            if checkformoves == 1:
+                return GenRandCell(board), moved
+            else:
+                return GenRandCell(board)
         else:
-            return board
+            if checkformoves == 1:
+                return board, moved
+            else:
+                return board
                                                         
     if dir == 'right':
         for x in range(3, -1, -1):
@@ -56,9 +62,15 @@ def Move(board, dir):
                         except IndexError:
                             None
         if moved:
-            return GenRandCell(board)
+            if checkformoves == 1:
+                return GenRandCell(board), moved
+            else:
+                return GenRandCell(board)
         else:
-            return board
+            if checkformoves == 1:
+                return board, moved
+            else:
+                return board
 
     if dir == 'down':
         for y in range(3, -1, -1):
@@ -78,9 +90,15 @@ def Move(board, dir):
                         except IndexError:
                             None
         if moved:
-            return GenRandCell(board)
+            if checkformoves == 1:
+                return GenRandCell(board), moved
+            else:
+                return GenRandCell(board)
         else:
-            return board
+            if checkformoves == 1:
+                return board, moved
+            else:
+                return board
 
     if dir == 'left':
         for x in range(4):
@@ -100,9 +118,18 @@ def Move(board, dir):
                         except IndexError:
                             None
         if moved:
-            return GenRandCell(board)
+            if checkformoves == 1:
+                return GenRandCell(board), moved
+            else:
+                return GenRandCell(board)
         else:
-            return board
+            if checkformoves == 1:
+                return board, moved
+            else:
+                return board
         
 def GameOver(board):
-    None
+    if not(Move(board, 'up', 1)[1]) and not(Move(board, 'left', 1)[1]) and not(Move(board, 'down', 1)[1]) and not(Move(board, 'right', 1)[1]):
+        print('Game Over')
+    else:
+        print('Possible move')
