@@ -36,12 +36,8 @@ def main():
     global board
     u.clear()
     board = np.zeros((4,4), int)
-    board[0][0] = 2
-    board[1][0] = 2
-    board[2][0] = 4
-
-    #board = GenRandCell(board)
-    #board = GenRandCell(board)
+    board = GenRandCell(board)
+    board = GenRandCell(board)
     print(board)
     with keyboard.Listener(on_press = on_press) as listener:
         listener.join()
