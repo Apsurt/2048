@@ -3,7 +3,7 @@ from game import Move, GenRandCell, GameOver
 from pynput import keyboard
 import numpy as np
 
-def on_press(key):
+def on_press(key)->None:
     """Function called by listener. Records keystrokes.
 
     Args:
@@ -19,7 +19,12 @@ def on_press(key):
             score = moveTuple[1]
             print(board)
             print('Score:', score)
-            GameOver(board)
+            if GameOver(board):
+                u.clear()
+                print('GAME OVER')
+                print(board)
+                print('Score:', score)
+                exit()
         if key.char == 's':
             u.clear()
             moveTuple = Move(board, 2, score)
@@ -27,7 +32,12 @@ def on_press(key):
             score = moveTuple[1]
             print(board)
             print('Score:', score)
-            GameOver(board)
+            if GameOver(board):
+                u.clear()
+                print('GAME OVER')
+                print(board)
+                print('Score:', score)
+                exit()
         if key.char == 'a':
             u.clear()
             moveTuple = Move(board, 3, score)
@@ -35,7 +45,12 @@ def on_press(key):
             score = moveTuple[1]
             print(board)
             print('Score:', score)
-            GameOver(board)
+            if GameOver(board):
+                u.clear()
+                print('GAME OVER')
+                print(board)
+                print('Score:', score)
+                exit()
         if key.char == 'd':
             u.clear()
             moveTuple = Move(board, 1, score)
@@ -43,14 +58,19 @@ def on_press(key):
             score = moveTuple[1]
             print(board)
             print('Score:', score)
-            GameOver(board)
+            if GameOver(board):
+                u.clear()
+                print('GAME OVER')
+                print(board)
+                print('Score:', score)
+                exit()
             
         if key.char == 'q':
             exit()
     except AttributeError:
         None
 
-def main():
+def main()->None:
     global board
     global score
     score = 0

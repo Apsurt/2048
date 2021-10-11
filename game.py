@@ -1,7 +1,7 @@
 import numpy as np
 from sys import exit
 
-def GenRandCell(board):    
+def GenRandCell(board)->np.ndarray:    
     """Returns board with cell generated in random spot.
 
     Args:
@@ -63,6 +63,22 @@ def Move(board, dir, score)->np.ndarray:
     else:
         return GenRandCell(board), score
         
-def GameOver(board):
-    None
-    #check if any 0 in array then check if any cell is equal with its neighbour
+def GameOver(board)->bool:
+    """Checks if given board has possible legal move.
+
+    Args:
+        board (list[list]): game board
+
+    Returns:
+        gameOver (bool): game is over or not
+    """    
+    if not 0 in board:
+        for y in range(len(board)):
+            for x in range(len(board)):
+                if y - 1 >= 0:
+                    for spin in range(4):
+                        if np.rot90(board, spin)[y][x] == np.rot90(board, spin)[y-1][x]:
+                            return False
+        return True
+    else:
+        return False
