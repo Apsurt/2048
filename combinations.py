@@ -19,7 +19,6 @@ def AppendDirs(array)->list[list]:
             set[direction+4*listIndex].append(direction)
     return set
 
-
 def GenerateCombinations(depth)->list[list]:
     """Returns all combinations of the given depth/lenght.
 

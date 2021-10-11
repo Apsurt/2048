@@ -2,6 +2,14 @@ import numpy as np
 from sys import exit
 
 def GenRandCell(board):    
+    """Returns board with cell generated in random spot.
+
+    Args:
+        board (list[list]): Board in which are cells generated.
+
+    Returns:
+        board (list[list]): board with cell generated in random spot.
+    """    
     empty = np.where(board==0)
     emptySpaces = list(zip(empty[0], empty[1]))
     if emptySpaces == []:

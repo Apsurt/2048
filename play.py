@@ -4,6 +4,11 @@ from pynput import keyboard
 import numpy as np
 
 def on_press(key):
+    """Function called by listener. Records keystrokes.
+
+    Args:
+        key (pynput.keyboard._win32.KeyCode): w - up, d - right, s - down, a - left.
+    """    
     global board
     try:
         if key.char == 'w':
