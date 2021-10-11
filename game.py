@@ -19,10 +19,10 @@ def Move(board, dir)->np.ndarray:
 
     Args:
         board (numpy.ndarray): Board state which you wish to move in certain direction.
-        dir (int): 0 - up, 1 - right, 2 - down, 3 - left. Sets direction in which the movement will occur.
+        dir (int): Sets direction in which the movement will occur (0 - up, 1 - right, 2 - down, 3 - left).
 
     Returns:
-        board (numpy.ndarray): board state after move
+        board (numpy.ndarray): Board state after move.
     """    
     #rotate board
     board = np.rot90(board, dir)
