@@ -3,7 +3,7 @@ from game import Move, GenRandCell, GameOver
 from pynput import keyboard
 import numpy as np
 
-def on_press(key)->None:
+def OnPress(key)->None:
     """Function called by listener. Records keystrokes.
 
     Args:
@@ -70,7 +70,7 @@ def on_press(key)->None:
     except AttributeError:
         None
 
-def main()->None:
+def Main()->None:
     global board
     global score
     score = 0
@@ -79,7 +79,7 @@ def main()->None:
     board = GenRandCell(board)
     board = GenRandCell(board)
     print(board)
-    with keyboard.Listener(on_press = on_press) as listener:
+    with keyboard.Listener(on_press = OnPress) as listener:
         listener.join()
 
-main()
+Main()

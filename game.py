@@ -31,6 +31,7 @@ def Move(board, dir, score)->np.ndarray:
 
     Returns:
         board (numpy.ndarray): Board state after move.
+        score (int): Game score.
     """    
     #rotate board
     board = np.rot90(board, dir)
