@@ -10,26 +10,39 @@ def on_press(key):
         key (pynput.keyboard._win32.KeyCode): w - up, d - right, s - down, a - left.
     """    
     global board
+    global score
     try:
         if key.char == 'w':
             u.clear()
-            board = Move(board, 0)
+            moveTuple = Move(board, 0, score)
+            board = moveTuple[0]
+            score = moveTuple[1]
             print(board)
+            print('Score:', score)
             GameOver(board)
         if key.char == 's':
             u.clear()
-            board = Move(board, 2)
+            moveTuple = Move(board, 2, score)
+            board = moveTuple[0]
+            score = moveTuple[1]
             print(board)
+            print('Score:', score)
             GameOver(board)
         if key.char == 'a':
             u.clear()
-            board = Move(board, 3)
+            moveTuple = Move(board, 3, score)
+            board = moveTuple[0]
+            score = moveTuple[1]
             print(board)
+            print('Score:', score)
             GameOver(board)
         if key.char == 'd':
             u.clear()
-            board = Move(board, 1)
+            moveTuple = Move(board, 1, score)
+            board = moveTuple[0]
+            score = moveTuple[1]
             print(board)
+            print('Score:', score)
             GameOver(board)
             
         if key.char == 'q':
@@ -39,6 +52,8 @@ def on_press(key):
 
 def main():
     global board
+    global score
+    score = 0
     u.clear()
     board = np.zeros((4,4), int)
     board = GenRandCell(board)

@@ -22,7 +22,7 @@ def GenRandCell(board):
             board[emptySpaces[rand][0]][emptySpaces[rand][1]] = 2
         return board
 
-def Move(board, dir)->np.ndarray:
+def Move(board, dir, score)->np.ndarray:
     """Takes 2048 board and moves it to the given side.
 
     Args:
@@ -53,14 +53,15 @@ def Move(board, dir)->np.ndarray:
                 if (board[y-move][x] == board[y-move+1][x]) and not((y-move+1, x) in mergedCells) and not((y-move, x) in mergedCells):
                     board[y-move][x] += board[y-move+1][x]
                     board[y-move+1][x] = 0
+                    score += board[y-move][x]
                     movedCells.append((y-move, x))
                     mergedCells.append((y-move, x))
     #rerotate board
     board = np.rot90(board, 4-dir)
     if movedCells == []:
-        return board
+        return board, score
     else:
-        return GenRandCell(board)
+        return GenRandCell(board), score
         
 def GameOver(board):
     None
