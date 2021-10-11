@@ -1,7 +1,7 @@
 import numpy as np
 from sys import exit
 
-def GenRandCell(board):
+def GenRandCell(board):    
     empty = np.where(board==0)
     emptySpaces = list(zip(empty[0], empty[1]))
     if emptySpaces == []:
@@ -14,11 +14,45 @@ def GenRandCell(board):
             board[emptySpaces[rand][0]][emptySpaces[rand][1]] = 2
         return board
 
-def Move(board, dir, checkformoves=0):
-    None
-    #move upwards and rotate matrix for other directions
-    #add and return score while adding together two cells
-    
+def Move(board, dir)->np.ndarray:
+    """Takes 2048 board and moves it to the given side.
+
+    Args:
+        board (numpy.ndarray): Board state which you wish to move in certain direction.
+        dir (int): 0 - up, 1 - right, 2 - down, 3 - left. Sets direction in which the movement will occur.
+
+    Returns:
+        board (numpy.ndarray): board state after move
+    """    
+    #rotate board
+    board = np.rot90(board, dir)
+    #find occupied spaces
+    notEmpty = np.where(board!=0)
+    occupiedSpaces = list(zip(notEmpty[0], notEmpty[1]))
+    #creat bools lists (if cell is on the list it is considered as true)
+    movedCells = []
+    mergedCells = []
+    #make a move
+    for cell in occupiedSpaces:
+        y = cell[0].copy()
+        x = cell[1].copy()
+        for move in range(1, cell[0]+1):
+            if y - move >= 0:
+                if board[y-move][x] == 0:
+                    board[y-move][x] = board[y-move+1][x]
+                    board[y-move+1][x] = 0
+                    movedCells.append((y-move, x))
+                if (board[y-move][x] == board[y-move+1][x]) and not((y-move+1, x) in mergedCells) and not((y-move, x) in mergedCells):
+                    board[y-move][x] += board[y-move+1][x]
+                    board[y-move+1][x] = 0
+                    movedCells.append((y-move, x))
+                    mergedCells.append((y-move, x))
+    #rerotate board
+    board = np.rot90(board, 4-dir)
+    if movedCells == []:
+        return board
+    else:
+        return GenRandCell(board)
         
 def GameOver(board):
     None

@@ -8,22 +8,22 @@ def on_press(key):
     try:
         if key.char == 'w':
             u.clear()
-            board = Move(board, 'up')
+            board = Move(board, 0)
             print(board)
             GameOver(board)
         if key.char == 's':
             u.clear()
-            board = Move(board, 'down')
+            board = Move(board, 2)
             print(board)
             GameOver(board)
         if key.char == 'a':
             u.clear()
-            board = Move(board, 'left')
+            board = Move(board, 3)
             print(board)
             GameOver(board)
         if key.char == 'd':
             u.clear()
-            board = Move(board, 'right')
+            board = Move(board, 1)
             print(board)
             GameOver(board)
             
@@ -36,8 +36,12 @@ def main():
     global board
     u.clear()
     board = np.zeros((4,4), int)
-    board = GenRandCell(board)
-    board = GenRandCell(board)
+    board[0][0] = 2
+    board[1][0] = 2
+    board[2][0] = 4
+
+    #board = GenRandCell(board)
+    #board = GenRandCell(board)
     print(board)
     with keyboard.Listener(on_press = on_press) as listener:
         listener.join()
